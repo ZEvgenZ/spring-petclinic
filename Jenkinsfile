@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('print') {
             steps {
-                  sh('/home/ubuntu/print.sh') 
+                  sh('python /home/zevgenz/my_AWS_progects/task2/list_instances.py') 
                 }
         }
     }

@@ -11,9 +11,9 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        stage ('print') {
-            steps {
-                  sh('python /home/zevgenz/my_AWS_progects/task2/list_instances.py') 
+        stage ('list') {
+            steps { 
+                  sh('/home/zevgenz/my_AWS_progects/task2/list_instances.py') 
                 }
         }
     }

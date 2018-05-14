@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label'label1'
+    }
     tools { 
         maven 'maven_3.5.3' 
     }

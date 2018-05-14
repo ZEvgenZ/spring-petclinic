@@ -13,7 +13,7 @@ pipeline {
         }
         stage ('list') {
             steps { 
-                  sh('/home/zevgenz/my_AWS_progects/task2/list_instances.py') 
+                  sh('./list_instances.py') 
                 }
         }
     }

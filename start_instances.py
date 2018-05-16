@@ -85,7 +85,7 @@ instances = ec2.create_instances(
     MinCount=1,
     SubnetId = "subnet-fa255292"
     #Tags=[{'Key': 'Name', 'Value': 'db_host'}],
-    
+)   
 instances[0].wait_until_running()
 instances = ec2.create_instances(
     ImageId='ami-976152f2', 
@@ -95,7 +95,7 @@ instances = ec2.create_instances(
     MinCount=1,
     SubnetId = "subnet-fa255292"
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
-    
+)
 instances[0].wait_until_running()
 print(instances[0].id)
 

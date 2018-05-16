@@ -84,9 +84,9 @@ instances = ec2.create_instances(
     MaxCount=1,
     MinCount=1,
     SubnetId = "subnet-fa255292",
-    security_group_ids: ["sg-c4d22aae"],
+    SecurityGroupIds = ["sg-c4d22aae"],
     #Tags=[{'Key': 'Name', 'Value': 'db_host'}],
-    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': "sg-c4d22aae"}]
+    NetworkInterfaces=[{'DeviceIndex': 0, 'AssociatePublicIpAddress': True}]
 )   
 instances[0].wait_until_running()
 instances = ec2.create_instances(
@@ -95,8 +95,10 @@ instances = ec2.create_instances(
     KeyName='aws_pair_keys', 
     MaxCount=1,
     MinCount=1,
-    SubnetId = "subnet-fa255292"
+    SubnetId = "subnet-fa255292",
+    SecurityGroupIds = ["sg-c4d22aae"],
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
+    NetworkInterfaces=[{'DeviceIndex': 0, 'AssociatePublicIpAddress': False}]
 )
 instances[0].wait_until_running()
 print(instances[0].id)

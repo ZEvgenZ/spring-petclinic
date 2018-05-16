@@ -83,11 +83,11 @@ instances = ec2.create_instances(
     KeyName='aws_pair_keys', 
     MaxCount=1,
     MinCount=1,
-    SubnetId = "subnet-fa255292",
-    SecurityGroupIds = ["sg-c4d22aae"],
-    AssociatePublicIpAddress = True
+    #SubnetId = "subnet-fa255292",
+    #SecurityGroupIds = ["sg-c4d22aae"],
+    #AssociatePublicIpAddress = True
     #Tags=[{'Key': 'Name', 'Value': 'db_host'}],
-    #NetworkInterfaces=[{'DeviceIndex': 0, 'AssociatePublicIpAddress': True}]
+    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': ["sg-c4d22aae",]}]
 )   
 instances[0].wait_until_running()
 instances = ec2.create_instances(
@@ -96,11 +96,11 @@ instances = ec2.create_instances(
     KeyName='aws_pair_keys', 
     MaxCount=1,
     MinCount=1,
-    SubnetId = "subnet-fa255292",
-    SecurityGroupIds = ["sg-c4d22aae"],
-    AssociatePublicIpAddress = False
+    #SubnetId = "subnet-fa255292",
+    #SecurityGroupIds = ["sg-c4d22aae"],
+    #AssociatePublicIpAddress = False
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
-    #NetworkInterfaces=[{'DeviceIndex': 0, 'AssociatePublicIpAddress': False}]
+    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': False, 'Groups': ["sg-c4d22aae",]}]
 )
 instances[0].wait_until_running()
 print(instances[0].id)

@@ -22,7 +22,7 @@ instances = ec2.create_instances(
                 'Tags': [
                     {
                         'Key': 'Name',
-                        'Value': 'db_host'
+                        'Value': "db_host"
                     },
                 ]
             },
@@ -46,7 +46,7 @@ instances = ec2.create_instances(
                 'Tags': [
                     {
                         'Key': 'Name',
-                        'Value': 'app_host'
+                        'Value': "app_host"
                     },
                 ]
             },

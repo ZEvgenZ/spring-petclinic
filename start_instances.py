@@ -57,3 +57,11 @@ print(instances[0].id)
 
 for instance in ec2.instances.all():
     print (instance.id, instance.state)
+
+f_hosts=open('/etc/ansible/hosts', mode='w+')
+f_hosts.write("[hosts]")
+f_hosts.write("APP_VM ansible_ssh_host=10.0.10.100 ansible_ssh_user=root")
+f_hosts.write("DB_VM ansible_ssh_host=10.0.10.200 ansible_ssh_user=root")
+f_hosts.close()
+
+#f_hosts=open('/etc/ansible/hosts', mode='a')

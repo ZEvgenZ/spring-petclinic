@@ -85,7 +85,7 @@ instances = ec2.create_instances(
     MinCount=1,
     SubnetId = subnet-fa255292
     #Tags=[{'Key': 'Name', 'Value': 'db_host'}],
-    NetworkInterfaces=[{'SubnetId': subnet, 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': security_group}])
+    NetworkInterfaces=[{'SubnetId': ['subnet-fa255292'], 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': ['sg-c4d22aae']}])
 instances[0].wait_until_running()
 instances = ec2.create_instances(
     ImageId='ami-976152f2', 
@@ -95,7 +95,7 @@ instances = ec2.create_instances(
     MinCount=1,
     SubnetId = subnet-fa255292
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
-    NetworkInterfaces=[{'SubnetId': subnet, 'DeviceIndex': 0, 'AssociatePublicIpAddress': False, 'Groups': security_group}])
+    NetworkInterfaces=[{'SubnetId': ['subnet-fa255292'], 'DeviceIndex': 0, 'AssociatePublicIpAddress': False, 'Groups': ['sg-c4d22aae']}])
 instances[0].wait_until_running()
 print(instances[0].id)
 

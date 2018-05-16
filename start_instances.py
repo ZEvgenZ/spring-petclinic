@@ -16,17 +16,17 @@ instances = ec2.create_instances(
     #AssociatePublicIpAddress = True
     #Tags=[{'Key': 'Name', 'Value': 'db_host'}],
     NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'PrivateIpAddress': '10.0.10.200', 'Groups': ["sg-c4d22aae",]}],
-    TagSpecifications = [
-            {
-                
-                'Tags': [
-                    {
-                        'Key': 'Name',
-                        'Value': "db_host"
-                    },
-                ]
-            },
-        ]
+    #TagSpecifications = [
+    #        {
+    #            
+    #            'Tags': [
+    #                {
+    #                    'Key': 'Name',
+    #                    'Value': "db_host"
+    #                },
+    #            ]
+    #        },
+    #    ]
 )   
 instances[0].wait_until_running()
 instances = ec2.create_instances(
@@ -40,17 +40,17 @@ instances = ec2.create_instances(
     #AssociatePublicIpAddress = False
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
     NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': False, 'PrivateIpAddress': '10.0.10.100', 'Groups': ["sg-c4d22aae",]}],
-    TagSpecifications = [
-            {
-                
-                'Tags': [
-                    {
-                        'Key': 'Name',
-                        'Value': "app_host"
-                    },
-                ]
-            },
-        ]
+    #TagSpecifications = [
+    #        {
+    #            
+    #            'Tags': [
+    #                {
+    #                    'Key': 'Name',
+    #                    'Value': "app_host"
+    #                },
+    #            ]
+    #        },
+    #    ]
 )
 instances[0].wait_until_running()
 print(instances[0].id)

@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'label1'
+        label 'aws_first'
     }
     tools { 
         maven 'maven_3.5.3' 

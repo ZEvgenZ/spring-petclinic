@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
         
-        }
+        
         stage ('list') {
             steps { 
                 withCredentials([[

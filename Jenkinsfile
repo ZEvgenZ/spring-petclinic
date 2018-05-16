@@ -23,7 +23,8 @@ pipeline {
         ]]) {
             sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 ${AWS_BIN} ec2 ./list_instances.py'
              
-                }
+            }
+            }
         }
     }
 }

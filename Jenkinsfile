@@ -15,7 +15,14 @@ pipeline {
         }
         stage ('list') {
             steps { 
-                  sh('./list_instances.py') 
+                withCredentials([[
+            $class: 'AmazonWebServicesCredentialsBinding',
+            credentialsId: 'jenkins',
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        ]]) {
+            sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 ${AWS_BIN} ec2 ./list_instances.py'
+             
                 }
         }
     }

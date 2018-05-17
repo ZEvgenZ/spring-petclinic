@@ -1,0 +1,88 @@
+---
+- hosts: DB_VM
+  connection: local
+  #remote_user: root #zevgenz #vagrant
+  become: yes
+  #become_method: sudo
+  vars:
+        
+  tasks:
+    - name: Update yum
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+        
+    - name: Install packages
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - wget
+        - MySQL-python
+        - mariadb-server
+                     
+    - name: Start the MySQL service
+      service:
+        name: mariadb
+        state: started
+        enabled: true
+
+    - name: Removes all anonymous user accounts
+      mysql_user:
+        name: ''
+        host_all: yes
+        state: absent
+
+    - name: Removes test database
+      mysql_db:
+        name: test
+        state: absent
+
+    - name: Create new database
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+        
+    - name: Create new database user
+      mysql_user:
+        name: '{{ db_user }}'
+        password: '{{ db_pass }}'
+        priv: '{{ db_name }}.*:ALL,GRANT'
+        host: "{{ app_host }}"
+        state: present
+
+    - name: Copy .my.cnf file to User_dir
+      template:
+        src: my.cnf
+        dest: /root/my.cnf
+        owner: root
+        mode: 0600
+    
+    - name: Copy cnf file
+      template:
+        src: my.cnf
+        dest: /etc/my.cnf
+        owner: root
+        mode: 0600
+
+    - name: Restart MySQL
+      service:
+        name: mariadb
+        state: restarted
+
+    - name: Check that user can connect to database
+      mysql_db:
+        login_user: '{{ db_user }}'
+        login_password: '{{ db_pass }}'
+        login_host: '192.168.111.200'
+        login_port: 3306
+        name: '{{ db_name }}'
+        state: present
+
+  handlers:
+    - name: Restart MySQL
+      service:
+        name: mariadb
+        state: restarted

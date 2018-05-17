@@ -15,6 +15,19 @@
     app_host_app: 10.0.10.200
 
   tasks:
+    - name: Check that user can connect to database
+      mysql_db:
+        login_user: '{{ db_user }}'
+        login_password: '{{ db_pass }}'
+        login_host: '{{ db_host }}'
+        login_port: 3306
+        name: '{{ db_name }}'
+        state: present
+        
+    - name: create user for app
+      user:
+        name: '{{ app_user }}'
+        password: '{{ app_pass }}'
 
     - name: Update yum
       yum:
@@ -32,20 +45,8 @@
         - git
         - java-1.8.0-openjdk-devel
         - mysql57
-
-    - name: Check that user can connect to database
-      mysql_db:
-        login_user: '{{ db_user }}'
-        login_password: '{{ db_pass }}'
-        login_host: 10.0.10.100
-        login_port: 3306
-        name: '{{ db_name }}'
-        state: present
-
-    - name: create user for app
-      user:
-        name: '{{ app_user }}'
-        password: '{{ app_pass }}'
+            
+   
     
     - name: Make Java available for system
       command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'

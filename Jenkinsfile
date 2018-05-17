@@ -18,7 +18,7 @@ pipeline {
     stages {
         
         
-        stage ('list & deploy') {
+        stage ('list & instances up') {
             steps { 
                 withCredentials([[
             $class: 'AmazonWebServicesCredentialsBinding',
@@ -30,6 +30,9 @@ pipeline {
             sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 python3 ./start_instances.py' 
             }
             }
+        }
+        stage ('use ansible') {
+
             steps {
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'ec2-user',
                                                              keyFileVariable: 'SSH_KEY_FOR_ABC')]) {
@@ -39,5 +42,7 @@ pipeline {
 
             }
         }
+        
+
     }
 }

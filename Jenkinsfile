@@ -35,9 +35,9 @@ pipeline {
                                                              keyFileVariable: 'SSH_KEY_FOR_ABC')]) {
                   //create database
                   sh '${SSH_KEY_FOR_ABC}' ansible-playbook ./playbook.yml
-                                                             }
                 }
 
             }
         }
     }
+}

@@ -1,6 +1,6 @@
 ---
 - hosts: DB_VM
-  connection: local
+  #connection: local
   #remote_user: root #zevgenz #vagrant
   become: yes
   #become_method: sudo
@@ -53,7 +53,7 @@
         host: "{{ app_host }}"
         state: present
 
-    - name: Copy .my.cnf file to User_dir
+    - name: Copy my.cnf file to User_dir
       template:
         src: my.cnf
         dest: /root/my.cnf

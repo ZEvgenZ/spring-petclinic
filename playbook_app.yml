@@ -1,6 +1,6 @@
 ---
 - hosts: APP_VM
-  connection: local
+  #connection: local
   #remote_user: root #zevgenz #vagrant
   become: yes
   #become_method: sudo
@@ -15,19 +15,6 @@
     app_host_app: 10.0.10.200
 
   tasks:
-    - name: Check that user can connect to database
-      mysql_db:
-        login_user: '{{ db_user }}'
-        login_password: '{{ db_pass }}'
-        login_host: 10.0.10.100
-        login_port: 3306
-        name: '{{ db_name }}'
-        state: present
-
-    - name: create user for app
-      user:
-        name: '{{ app_user }}'
-        password: '{{ app_pass }}'
 
     - name: Update yum
       yum:
@@ -44,15 +31,21 @@
         - wget
         - git
         - java-1.8.0-openjdk-devel
-            
-    #- name: Download Java
-    #  command: "wget -q -O {{java_archive}} --no-check-certificate --no-cookies --header 'Cookie: oraclelicense=accept-securebackup-cookie' {{download_url}} creates={{java_archive}}"
-    
-    #- name: Install Java JDK
-    #  yum:
-    #    name: '{{ java_name }}'
-    #    state: present
-    #    update_cache: yes
+        - mysql57
+
+    - name: Check that user can connect to database
+      mysql_db:
+        login_user: '{{ db_user }}'
+        login_password: '{{ db_pass }}'
+        login_host: '{{ db_host }}'
+        login_port: 3306
+        name: '{{ db_name }}'
+        state: present
+
+    - name: create user for app
+      user:
+        name: '{{ app_user }}'
+        password: '{{ app_pass }}'
     
     - name: Make Java available for system
       command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
@@ -70,16 +63,16 @@
     #  register: app_up
     #  when: latest_version is changed
 
-    #- name: mkdir
-    #  command: "mkdir -p {{ app_dir }}"
-    #  become: yes
-    #  #become_mode: su
-    #  become_user: "{{ app_user }}"
-    #  when: app_up is changed
+    - name: mkdir
+      command: "mkdir -p {{ app_dir }}"
+      become: yes
+      #become_mode: su
+      become_user: "{{ app_user }}"
+      when: app_up is changed
 
-    #- name: copy jar file
-    #  shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
-    #  when: app_up is changed
+    - name: copy jar file
+      shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
+      when: app_up is changed
 
     - name: run app
       shell: su -c "java -jar {{ app_dir }}/*.jar &" {{ app_user }}

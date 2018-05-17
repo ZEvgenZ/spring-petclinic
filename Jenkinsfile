@@ -34,7 +34,7 @@ pipeline {
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'ec2-user',
                                                              keyFileVariable: 'SSH_KEY_FOR_ABC')]) {
                   //create database
-                  sh '${SSH_KEY_FOR_ABC}' ansible-playbook ./playbook.yml
+                  sh '${SSH_KEY_FOR_ABC} ansible-playbook ./playbook.yml'
                 }
 
             }

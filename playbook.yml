@@ -69,14 +69,7 @@
         priv: 'db_name.*:ALL,GRANT'
         state: present
 
-    - name: Check that user can connect to database
-      mysql_db:
-        login_user: '{{ db_user }}'
-        login_password: '{{ db_pass }}'
-        login_host: 10.0.10.200
-        login_port: 3306
-        name: '{{ db_name }}'
-        state: present
+    
 
   handlers:
     - name: Restart MySQL

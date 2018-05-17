@@ -15,6 +15,15 @@
     app_host_app: 10.0.10.200
 
   tasks:
+    - name: Check that user can connect to database
+      mysql_db:
+        login_user: '{{ db_user }}'
+        login_password: '{{ db_pass }}'
+        login_host: 10.0.10.200
+        login_port: 3306
+        name: '{{ db_name }}'
+        state: present
+
     - name: create user for app
       user:
         name: '{{ app_user }}'

@@ -76,7 +76,7 @@
       mysql_db:
         login_user: '{{ db_user }}'
         login_password: '{{ db_pass }}'
-        login_host: '10.0.10.100'
+        login_host: '127.0.0.1'
         login_port: 3306
         name: '{{ db_name }}'
         state: present

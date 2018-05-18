@@ -6,10 +6,10 @@
   #become_method: sudo
   vars:
     #app_user: '{{ APP_USER }}'       
-    download_url: http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm
-    download_folder: ~/JDK
-    java_name: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
-    java_archive: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
+    #download_url: http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm
+    #download_folder: ~/JDK
+    #java_name: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
+    #java_archive: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
     project_dir: ~/PROJECT_DIR
     app_dir: /home/{{ app_user }}/app
     app_host_app: 10.0.10.200
@@ -30,7 +30,7 @@
         - wget
         - git
         - java-1.8.0-openjdk-devel
-       # - mysql57
+       # - mysql-client
         - MySQL-python
         
     - name: Check that user can connect to database

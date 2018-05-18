@@ -31,6 +31,8 @@ pipeline {
             }
             }
         }
+        sleep 200 // seconds
+        
         stage ('use ansible') {
 
             steps {

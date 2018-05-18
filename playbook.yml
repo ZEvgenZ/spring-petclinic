@@ -4,8 +4,8 @@
   remote_user: ec2-user #root #zevgenz #vagrant
   become: yes
   #become_method: sudo
-  vars:
-    db_name: '{{ DB_NAME }}'       
+  #vars:
+    #db_name: '{{ DB_NAME }}'       
         #    src_dir: /home/vagrant/src
         #hackt_dir: "{{ src_dir }}/hackt"
 
@@ -49,14 +49,14 @@
 
     - name: Create new database
       mysql_db:
-        name: "{{ db_name }}"
+        name: petclinic
         state: present
         
 
     - name: Create new database user
       mysql_user:
-        name: '{{ db_user }}'
-        password: '{{ db_pass }}'
+        name: usersql
+        password: 123456
         priv: 'db_name.*:ALL,GRANT'
         host: 10.0.10.%
         state: present

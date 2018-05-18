@@ -17,12 +17,7 @@ pipeline {
     }
     stages {
         
-        // stage ('Build') {
-        //     steps {
-        //         checkout scm
-        //         echo 'This is a minimal pipeline.'
-        //         sh 'mvn package'
-        //     }
+        
 
         stage ('list & instances up') {
             steps { 
@@ -35,10 +30,17 @@ pipeline {
             sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 python3 ./list_instances.py'
             sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 python3 ./start_instances.py' 
             }
-            sleep 150 // seconds
+            //sleep 150 // seconds
             }
         }
         
+        stage ('Build') {
+            steps {
+                checkout scm
+                echo 'This is a minimal pipeline.'
+                sh 'mvn package'
+            }
+        }
         
         stage ('use ansible') {
 

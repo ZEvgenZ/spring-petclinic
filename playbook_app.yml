@@ -32,7 +32,8 @@
         - java-1.8.0-openjdk-devel
        # - mysql-client
         - MySQL-python
-        - mariadb
+       # - mariadb
+        - python-mysqldb
         
     - name: Check that user can connect to database
       mysql_db:

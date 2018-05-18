@@ -19,7 +19,7 @@ pipeline {
         
         
 
-        stage ('list & instances up') {
+        /*stage ('list & instances up') {
             steps { 
                 withCredentials([[
             $class: 'AmazonWebServicesCredentialsBinding',
@@ -41,7 +41,7 @@ pipeline {
                 sh 'mvn package'
             }
         }
-        
+        */
         stage ('use ansible') {
 
             steps {

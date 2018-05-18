@@ -69,16 +69,16 @@
     #    name: '{{ db_name }}'
     #    state: present
 
-    - name: Copy my.cnf file to User_dir  
-      template:
-        src: .my.cnf
-        dest: /root/.my.cnf
-        owner: root
-        mode: 0600
+    #- name: Copy my.cnf file to User_dir  
+    #  template:
+    #    src: .my.cnf
+    #    dest: /root/.my.cnf
+    #    owner: root
+    #    mode: 0600
     
     - name: Copy cnf file
       template:
-        src: .my.cnf
+        src: ./.my.cnf
         dest: /etc/.my.cnf
         owner: root
         mode: 0600

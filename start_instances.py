@@ -45,7 +45,7 @@ instances = ec2.create_instances(
     #SecurityGroupIds = ["sg-c4d22aae"],
     #AssociatePublicIpAddress = False
     #Tags=[{'Key': 'Name', 'Value': 'app_host'}],
-    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': False, 'PrivateIpAddress': '10.0.10.100', 'Groups': ["sg-c4d22aae",]}],
+    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'PrivateIpAddress': '10.0.10.100', 'Groups': ["sg-c4d22aae",]}],
     #TagSpecifications = [
     #        {
     #            

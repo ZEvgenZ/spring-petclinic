@@ -78,8 +78,8 @@
     
     - name: Copy cnf file
       template:
-        src: my.cnf
-        dest: /etc/my.cnf
+        src: .my.cnf
+        dest: /etc/.my.cnf
         owner: root
         mode: 0600
 

@@ -6,7 +6,7 @@ ec2 = boto3.resource('ec2', region_name='us-east-2')
 # find image id ami-976152f2 / us-east-2
 # Create instances
 instances = ec2.create_instances(
-    ImageId='ami-976152f2', 
+    ImageId='ami-2a0f324f', 
     InstanceType='t2.micro',
     KeyName='aws_pair_keys', 
     MaxCount=1,
@@ -30,7 +30,7 @@ instances = ec2.create_instances(
 )   
 instances[0].wait_until_running()
 instances = ec2.create_instances(
-    ImageId='ami-976152f2', 
+    ImageId='ami-2a0f324f', 
     InstanceType='t2.micro',
     KeyName='aws_pair_keys', 
     MaxCount=1,

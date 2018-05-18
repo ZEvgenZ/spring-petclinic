@@ -69,14 +69,33 @@
         priv: 'db_name.*:ALL,GRANT'
         state: present
 
-    - name: Check that user can connect to database
-      mysql_db:
-        login_user: '{{ db_user }}'
-        login_password: '{{ db_pass }}'
-        login_host: 127.0.0.1
-        login_port: 3306
-        name: '{{ db_name }}'
-        state: present
+    #- name: Check that user can connect to database
+    #  mysql_db:
+    #    login_user: '{{ db_user }}'
+    #    login_password: '{{ db_pass }}'
+    #    login_host: 127.0.0.1
+    #    login_port: 3306
+    #    name: '{{ db_name }}'
+    #    state: present
+
+    - name: Copy my.cnf file to User_dir  
+      template:
+        src: ./my.cnf
+        dest: /root/my.cnf
+        owner: root
+        mode: 0600
+    
+    - name: Copy cnf file
+      template:
+        src: my.cnf
+        dest: /etc/my.cnf
+        owner: root
+        mode: 0600
+
+    - name: Restart MySQL
+      service:
+        name: mariadb
+        state: restarted
 
   handlers:
     - name: Restart MySQL

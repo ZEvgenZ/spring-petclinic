@@ -26,12 +26,8 @@
         - wget
         - MySQL-python
         - mariadb-server
-                #- "@Development tools"
-                #- guile
-                #- libtool-ltdl-devel
-                #- wget
-              #- texinfo
-      #become: yes
+                
+      
       
     - name: Start the MySQL service
       service:
@@ -55,12 +51,7 @@
       mysql_db:
         name: "{{ db_name }}"
         state: present
-        #login_host: 10.0.10.11
-        #login_password: demka
-        #login_port: 3306
-        #login_user: petclinic
-        #notify:
-        #- Restart MySQL
+        
 
     - name: Create new database user
       mysql_user:

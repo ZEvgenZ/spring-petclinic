@@ -1,10 +1,11 @@
 ---
 - hosts: DB_VM
-  #connection: local
+  connection: local
   #remote_user: root #zevgenz #vagrant
   become: yes
   #become_method: sudo
   vars:
+    db_name: '{{ DB_NAME }}'
         
   tasks:
     #- name: Update yum

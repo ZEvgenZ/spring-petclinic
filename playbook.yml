@@ -1,6 +1,6 @@
 ---
 - hosts: DB_VM
-  connection: local
+  #connection: local
   #remote_user: root #zevgenz #vagrant
   become: yes
   #become_method: sudo

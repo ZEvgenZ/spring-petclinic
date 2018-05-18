@@ -7,11 +7,11 @@
   vars:
         
   tasks:
-    - name: Update yum
-      yum:
-        name: '*'
-        state: latest
-        update_cache: yes
+    #- name: Update yum
+    #  yum:
+    #    name: '*'
+    #    state: latest
+    #    update_cache: yes
         
     - name: Install packages
       yum:

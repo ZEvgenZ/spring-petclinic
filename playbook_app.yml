@@ -1,7 +1,7 @@
 ---
 - hosts: APP_VM
   #connection: local
-  #remote_user: root #zevgenz #vagrant
+  remote_user: ec2-user
   become: yes
   #become_method: sudo
   vars:

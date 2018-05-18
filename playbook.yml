@@ -1,7 +1,7 @@
 ---
 - hosts: DB_VM
   #connection: local
-  #remote_user: root #zevgenz #vagrant
+  remote_user: ec2-user #root #zevgenz #vagrant
   become: yes
   #become_method: sudo
   vars:
@@ -78,8 +78,8 @@
     
     - name: Copy cnf file
       template:
-        src: ./.my.cnf
-        dest: /etc/.my.cnf
+        src: ./my.cnf
+        dest: /etc/my.cnf
         owner: root
         mode: 0600
 

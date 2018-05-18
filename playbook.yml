@@ -58,6 +58,7 @@
         name: '{{ db_user }}'
         password: '{{ db_pass }}'
         priv: 'db_name.*:ALL,GRANT'
+        host: 10.0.10.%
         state: present
 
     #- name: Check that user can connect to database

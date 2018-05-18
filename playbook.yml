@@ -1,7 +1,7 @@
 ---
 - hosts: DB_VM
   #connection: local
-  remote_user: ec2-user #root #zevgenz #vagrant
+  #remote_user: ec2-user #root #zevgenz #vagrant
   become: yes
   #become_method: sudo
   #vars:

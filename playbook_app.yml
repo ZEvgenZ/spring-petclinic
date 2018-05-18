@@ -1,7 +1,7 @@
 ---
 - hosts: APP_VM
   #connection: local
-  remote_user: ec2-user
+  #remote_user: ec2-user
   become: yes
   #become_method: sudo
   vars:
@@ -37,11 +37,11 @@
         
     - name: Check that user can connect to database
       mysql_db:
-        login_user: '{{ db_user }}'
-        login_password: '{{ db_pass }}'
+        login_user: usersql
+        login_password: 123456
         login_host: 10.0.10.100
         login_port: 3306
-        name: '{{ db_name }}'
+        name: petclinic
         state: present
         
     - name: create user for app

@@ -57,7 +57,7 @@
       mysql_user:
         name: usersql
         password: 123456
-        priv: 'db_name.*:ALL,GRANT'
+        priv: 'petclinic.*:ALL,GRANT'
         host: 10.0.10.%
         state: present
 

@@ -117,6 +117,8 @@
 
     - name: run app
       shell:  java -jar {{ app_dir }}/*.jar & 
+      args: 
+        chdir: '{{ app_dir }}'
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:

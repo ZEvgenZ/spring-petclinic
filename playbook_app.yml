@@ -108,16 +108,27 @@
         DB_PASS: "123456"
         DB_HOST: "10.0.10.100"
         DB_PORT: "3306"
+    #################################################
+    - name: appuser  
+      debug: msg='{{ app_user }}'
+    
+    - name: app_dir
+      debug: msg='{{ app_dir }}'
+
+    - name: app_pass  
+      debug: msg='{{ app_pass }}'
+
+    - name: item  
+      debug: msg='{{ item }}'
+#####################################################
 
     - name: Get my public IP from ipify.org
       ipify_facts:
 
     - name: URL to the web aplication
       debug: msg='{{ ipify_public_ip }}'
-      debug: msg='{{ app_user }}'
-      debug: msg='{{ app_dir }}'
-      debug: msg='{{ app_pass }}'
-      #debug: msg='{{ item }}'
+
+    
     
     - name: Wait for the application to start
       wait_for:

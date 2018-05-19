@@ -6,13 +6,18 @@
   #become_method: sudo
   vars:
     app_user: '{{ APP_USER }}'
-    app_pass: '{{ APP_PASS }}'       
+    app_pass: '{{ APP_PASS }}'
+    app_dir: /home/{{ app_user }}
+    db_user: '{{ APP_USER }}'
+    db_pass: '{{ DB_PASS }}'
+    db_host: '{{ DB_HOST }}'
+    db_port: '{{ DB_PORT }}'
+    db_name: '{{ DB_NAME }}'    
     #download_url: http://download.oracle.com/otn-pub/java/jdk/10.0.1+10/fb4372174a714e6b8c52526dc134031e/jdk-10.0.1_linux-x64_bin.rpm
     #download_folder: ~/JDK
     #java_name: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
     #java_archive: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
     #project_dir: ~/PROJECT_DIR
-    app_dir: /home/{{ app_user }}
     #app_host_app: 10.0.10.200
 
   tasks:
@@ -38,11 +43,11 @@
         
     - name: Check that user can connect to database
       mysql_db:
-        login_user: usersql
-        login_password: 123456
-        login_host: 10.0.10.100
-        login_port: 3306
-        name: petclinic
+        login_user: '{{ db_user }}'
+        login_password: '{{ db_pass }}'
+        login_host: '{{ db_host }}'
+        login_port: '{{ db_port }}'
+        name: '{{ db_name }}'
         state: present
         
     #- name: create user for app
@@ -52,7 +57,7 @@
 
     - name: Add the user 'APP_USER' with a specific uid and a primary group of 'admin'
       user:
-        name: "{{ app_user }}"
+        name: '{{ app_user }}'
         password: '{{ app_pass }}' # 123456
         shell: /bin/bash
         comment: APP_USER
@@ -103,11 +108,11 @@
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:
-        DB_USER: "usersql"
-        DB_NAME: "petclinic"
-        DB_PASS: "123456"
-        DB_HOST: "10.0.10.100"
-        DB_PORT: "3306"
+        DB_USER: '{{ db_user }}'
+        DB_NAME: '{{ db_name }}'
+        DB_PASS: '{{ db_pass }}'
+        DB_HOST: '{{ db_host }}'
+        DB_PORT: '{{ db_port }}'
     #################################################
     - name: appuser  
       debug: msg='{{ app_user }}'
@@ -118,8 +123,8 @@
     - name: app_pass  
       debug: msg='{{ app_pass }}'
 
-    - name: item  
-      debug: msg='{{ item }}'
+    # - name: item  
+    #   debug: msg='{{ item }}'
 #####################################################
 
     - name: Get my public IP from ipify.org

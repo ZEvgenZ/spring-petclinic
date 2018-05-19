@@ -6,6 +6,7 @@ ec2 = boto3.resource('ec2', region_name='us-east-2')
 #IP-address range
 ip_addr = ["10.0.10.100", "10.0.10.200"]
 
+#hosts-file for ansible
 f_hosts=open('hosts', mode='w+')
 f_hosts.write("[hosts]\n")
 f_hosts.write("APP_VM ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user\n")

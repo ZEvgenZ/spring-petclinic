@@ -54,8 +54,8 @@
             
    
     
-    - name: Make Java available for system
-      command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
+    #- name: Make Java available for system
+    #  command: 'alternatives --install "/usr/bin/java" "java" "{{java_name}}/bin/java" 2000'
 
     #- name: Git_Clone
     #  git:

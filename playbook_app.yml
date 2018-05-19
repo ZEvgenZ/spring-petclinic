@@ -99,15 +99,21 @@
         DB_HOST: '{{ db_host }}'
         DB_PORT: '{{ db_port }}'
 
+    - name: Get my public IP from ipify.org
+      ipify_facts:
+
+    - name: URL to the web aplication
+      debug: msg='{{ ipify_public_ip }}'
+    
     - name: Wait for the application to start
       wait_for:
         timeout: 60
-        host: '{{ app_host_app }}'
+        host: {{ ipify_public_ip }}
         port: 8080
 
     - name: Application healthcheck
       uri:
-        url: "http://{{ app_host_app }}:8080/manage/health"
+        url: "http://{{ ipify_public_ip }}:8080/manage/health"
       return_content: yes
       register: health
 

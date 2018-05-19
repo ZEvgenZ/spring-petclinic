@@ -80,7 +80,7 @@
     #  when: latest_version is changed
 
     - name: mkdir
-      command: "mkdir -p {{ app_dir }}"
+      shell: mkdir -p {{ app_dir }}
       become: yes
       #become_mode: su
       become_user: "{{ app_user }}"

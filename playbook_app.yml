@@ -90,8 +90,8 @@
       become_user: "{{ app_user }}"
 
     - name: run app
-      shell: java -jar {{ app_dir }}/*.jar & {{ app_user }}
-      become_user: "{{ app_user }}"
+      shell: java -jar {{ app_dir }}/*.jar & 
+      become: "{{ app_user }}"
       environment:
         DB_USER: '{{ db_user }}'
         DB_NAME: '{{ db_name }}'

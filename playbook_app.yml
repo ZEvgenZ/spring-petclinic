@@ -122,9 +122,9 @@
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:
-        DB_USER: '{{ db_user }}'
+        DB_USER: "{{ DB_USER }}"
         DB_NAME: '{{ db_name }}'
-        DB_PASS: '{{ db_pass }}'
+        DB_PASS: "{{ DB_PASS }}"
         DB_HOST: '{{ db_host }}'
         DB_PORT: '{{ db_port }}'
     #################################################

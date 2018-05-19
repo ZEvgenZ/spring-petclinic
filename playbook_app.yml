@@ -90,7 +90,7 @@
       become_user: "{{ app_user }}"
 
     - name: run app
-      shell: su -c "java -jar {{ app_dir }}/*.jar &" {{ app_user }}
+      shell: java -jar {{ app_dir }}/*.jar & "{{ app_user }}"
       #become: yes
       environment:
         DB_USER: '{{ db_user }}'

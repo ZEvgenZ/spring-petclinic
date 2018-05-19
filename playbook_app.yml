@@ -117,7 +117,7 @@
       debug: msg='{{ app_user }}'
       debug: msg='{{ app_dir }}'
       debug: msg='{{ app_pass }}'
-      debug: msg='{{ item }}'
+      #debug: msg='{{ item }}'
     
     - name: Wait for the application to start
       wait_for:

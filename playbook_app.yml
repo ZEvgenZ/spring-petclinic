@@ -8,7 +8,7 @@
     app_user: '{{ APP_USER }}'
     app_pass: '{{ APP_PASS }}'
     app_dir: /home/{{ app_user }}
-    db_user: '{{ APP_USER }}'
+    db_user: '{{ DB_USER }}'
     db_pass: '{{ DB_PASS }}'
     db_host: '{{ DB_HOST }}'
     db_port: '{{ DB_PORT }}'
@@ -95,13 +95,24 @@
     #  shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
     #  when: app_up is changed
 
-    - name: copy jar file
-      copy:
-        src: "{{ item }}"
-        dest: "{{ app_dir }}"
-      with_fileglob:
-        - target/*.jar
-      become_user: "{{ app_user }}"
+    # - name: copy jar file
+    #   copy:
+    #     src: "{{ item }}"
+    #     dest: "{{ app_dir }}"
+    #   with_fileglob:
+    #     - target/*.jar
+    #   become_user: "{{ app_user }}"
+
+    # - name: mkdir
+    #   command: "mkdir -p {{ app_dir }}"
+    #   become: yes
+    #   #become_mode: su
+    #   become_user: "{{ app_user }}"
+    #   when: app_up is changed
+
+    # - name: copy jar file
+    #   shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
+    #   when: app_up is changed
 
     - name: run app
       shell:  java -jar {{ app_dir }}/*.jar & 

@@ -4,10 +4,12 @@
   #remote_user: ec2-user #root #zevgenz #vagrant
   become: yes
   #become_method: sudo
-  #vars:
-    #db_name: '{{ DB_NAME }}'       
-        #    src_dir: /home/vagrant/src
-        #hackt_dir: "{{ src_dir }}/hackt"
+  vars:
+    db_user: '{{ DB_USER }}'
+    db_pass: '{{ DB_PASS }}'
+    db_host: '{{ DB_HOST }}'
+    db_port: '{{ DB_PORT }}'
+    db_name: '{{ DB_NAME }}'   
 
   tasks:
     - name: Update yum
@@ -26,9 +28,7 @@
         - wget
         - MySQL-python
         - mariadb-server
-                
-      
-      
+        
     - name: Start the MySQL service
       service:
         name: mariadb
@@ -46,37 +46,20 @@
         name: test
         state: absent
 
-
     - name: Create new database
       mysql_db:
-        name: petclinic
+        name: '{{ db_name }}'
         state: present
         
 
     - name: Create new database user
       mysql_user:
-        name: usersql
-        password: 123456
-        priv: 'petclinic.*:ALL,GRANT'
-        host: 10.0.10.%
+        name: '{{ db_user }}'
+        password: '{{ db_pass }}'
+        priv: '{{ db_name }}.*:ALL,GRANT'
+        host: '{{ db_host }}'
         state: present
-
-    #- name: Check that user can connect to database
-    #  mysql_db:
-    #    login_user: '{{ db_user }}'
-    #    login_password: '{{ db_pass }}'
-    #    login_host: 127.0.0.1
-    #    login_port: 3306
-    #    name: '{{ db_name }}'
-    #    state: present
-
-    #- name: Copy my.cnf file to User_dir  
-    #  template:
-    #    src: .my.cnf
-    #    dest: /root/.my.cnf
-    #    owner: root
-    #    mode: 0600
-    
+       
     - name: Copy cnf file
       template:
         src: ./my.cnf

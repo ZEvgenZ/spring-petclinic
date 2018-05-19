@@ -12,7 +12,7 @@
     #java_name: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
     #java_archive: "{{download_folder}}/jdk-10.0.1_linux-x64_bin.rpm"
     #project_dir: ~/PROJECT_DIR
-    #app_dir: /home/{{ app_user }}/app
+    app_dir: /home/{{ app_user }}/app/
     #app_host_app: 10.0.10.200
 
   tasks:
@@ -80,7 +80,7 @@
     #  when: latest_version is changed
 
     - name: mkdir
-      command: "mkdir -p /home/{{ app_user }}/app"
+      command: "mkdir -p {{ app_dir }}"
       become: yes
       #become_mode: su
       become_user: "{{ app_user }}"

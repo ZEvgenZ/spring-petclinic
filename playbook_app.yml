@@ -87,7 +87,7 @@
         dest: "{{ app_dir }}"
       with_fileglob:
         - target/*.jar
-      become_user: {{ app_user }}
+      become_user: "{{ app_user }}"
 
     - name: run app
       shell: su -c "java -jar {{ app_dir }}/*.jar &" {{ app_user }}

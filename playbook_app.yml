@@ -96,13 +96,13 @@
     #  shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
     #  when: app_up is changed
 
-    # - name: copy jar file
-    #   copy:
-    #     src: "{{ item }}"
-    #     dest: "{{ app_dir }}"
-    #   with_fileglob:
-    #     - target/*.jar
-    #   become_user: "{{ app_user }}"
+    - name: copy jar file
+      copy:
+        src: "{{ item }}"
+        dest: "{{ app_dir }}"
+      with_fileglob:
+        - target/*.jar
+      become_user: "{{ app_user }}"
 
     # - name: mkdir
     #   command: "mkdir -p {{ app_dir }}"

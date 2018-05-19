@@ -107,7 +107,7 @@
     
     - name: Wait for the application to start
       wait_for:
-        timeout: 60
+        timeout: 310
         host: "{{ ipify_public_ip }}"
         port: 8080
 

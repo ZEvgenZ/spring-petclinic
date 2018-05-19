@@ -70,16 +70,24 @@
     #  register: app_up
     #  when: latest_version is changed
 
-    - name: mkdir
-      command: "mkdir -p {{ app_dir }}"
-      become: yes
-      #become_mode: su
-      become_user: "{{ app_user }}"
-      when: app_up is changed
+    #- name: mkdir
+    #  command: "mkdir -p {{ app_dir }}"
+    #  become: yes
+    #  #become_mode: su
+    #  become_user: "{{ app_user }}"
+    #  when: app_up is changed
+
+    #- name: copy jar file
+    #  shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
+    #  when: app_up is changed
 
     - name: copy jar file
-      shell: cp {{ project_dir }}/target/*.jar {{ app_dir }}/
-      when: app_up is changed
+      copy:
+        src: "{{ item }}"
+        dest: "{{ app_dir }}"
+      with_fileglob:
+        - target/*.jar
+      become_user: {{ app_user }}
 
     - name: run app
       shell: su -c "java -jar {{ app_dir }}/*.jar &" {{ app_user }}

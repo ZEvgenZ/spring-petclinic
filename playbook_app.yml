@@ -99,15 +99,15 @@
       become_user: "{{ app_user }}"
 
     - name: run app
-      shell: chmod -R +x {{ app_dir }}/*.jar && java -jar {{ app_dir }}/*.jar & 
+      shell:  java -jar {{ app_dir }}/*.jar & 
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:
-        DB_USER: usersql
-        DB_NAME: petclinic
-        DB_PASS: 123456
-        DB_HOST: 10.0.10.100
-        DB_PORT: 3306
+        DB_USER: "usersql"
+        DB_NAME: "petclinic"
+        DB_PASS: "123456"
+        DB_HOST: "10.0.10.100"
+        DB_PORT: "3306"
 
     - name: Get my public IP from ipify.org
       ipify_facts:

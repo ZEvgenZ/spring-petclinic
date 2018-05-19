@@ -99,7 +99,7 @@
       become_user: "{{ app_user }}"
 
     - name: run app
-      shell: java -jar {{ app_dir }}/*.jar & 
+      shell: chmod +x {{ app_dir }}/*.jar && java -jar {{ app_dir }}/*.jar & 
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:

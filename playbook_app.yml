@@ -108,7 +108,7 @@
     - name: Wait for the application to start
       wait_for:
         timeout: 60
-        host: {{ ipify_public_ip }}
+        host: "{{ ipify_public_ip }}"
         port: 8080
 
     - name: Application healthcheck

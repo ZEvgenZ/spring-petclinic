@@ -50,7 +50,16 @@
         name: '{{ app_user }}'
         password: '{{ app_pass }}'
 
-    
+    - name: Add the user 'APP_USER' with a specific uid and a primary group of 'admin'
+      user:
+        name: "{{ app_user }}"
+        password: '{{ app_pass }}' # 123456
+        shell: /bin/bash
+        comment: APP_USER
+        append: yes
+        create_home: yes
+        #group: sudo
+        state: present
             
    
     
@@ -90,7 +99,8 @@
       become_user: "{{ app_user }}"
 
     - name: run app
-      shell: java -jar {{ app_dir }}/*.jar & 
+      #shell: java -jar {{ app_dir }}/*.jar & 
+      shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
       become: "{{ app_user }}"
       environment:
         DB_USER: '{{ db_user }}'

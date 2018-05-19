@@ -1,7 +1,7 @@
 ---
 - hosts: APP_VM
   #connection: local
-  remote_user: ec2-user
+  #remote_user: ec2-user
   become: yes
   #become_method: sudo
   vars:
@@ -102,7 +102,7 @@
         dest: "{{ app_dir }}"
       with_fileglob:
         - target/*.jar
-      become_user: "{{ app_user }}"
+      #become_user: "{{ app_user }}"
 
     # - name: mkdir
     #   command: "mkdir -p {{ app_dir }}"
@@ -120,7 +120,7 @@
       args: 
         chdir: '{{ app_dir }}'
       #shell: java -jar {{ app_dir }}/spring-petclinic-2.0.0.BUILD-SNAPSHOT.jar &
-      become: "{{ app_user }}"
+      #become: "{{ app_user }}"
       environment:
         DB_USER: '{{ db_user }}'
         DB_NAME: '{{ db_name }}'

@@ -80,10 +80,10 @@
     #  when: latest_version is changed
 
     - name: mkdir
-      shell: mkdir -p {{ app_dir }}
-      #become: yes
-      #become_mode: su
-      #become_user: "{{ app_user }}"
+      command: "mkdir -p {{ app_dir }}"
+      become: yes
+      become_mode: su
+      become_user: "{{ app_user }}"
       when: app_up is changed
 
     #- name: copy jar file

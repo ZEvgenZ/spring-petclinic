@@ -26,6 +26,7 @@ pipeline    {
                     withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
                         sh 'docker push zevgenz/task3_docker:${BUILD_NUMBER}'
                     }
+                    sh 'docker pull maven:3.5.3'
                     // sh 'docker rmi $(docker images | grep anatolek/demo3)'
                 }
             }

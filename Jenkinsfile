@@ -16,20 +16,21 @@ pipeline    {
                 // }
                 docker {
                     image 'maven:3.5.3'
-                    //args '  -v build-volume:/app'
-                    args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
+                    args '  -v build-volume:/app'
+                    //args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
 
                 }
             }
-            steps {
-                checkout scm
-                sh 'mvn package'
-            }
+            // steps {
+            //     checkout scm
+            //     sh 'mvn package'
+            // }
 
             steps {
                 ansiColor('xterm') {
                 checkout scm
-                //sh 'docker run -it maven:3.5.3'
+                sh 'docker run -it maven:3.5.3'
+                sh 'mvn package'
                 sh 'docker build -t zevgenz/task3_docker:${BUILD_NUMBER} .'
                 sh 'docker images'
                 withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
@@ -39,23 +40,7 @@ pipeline    {
                 }
             }
 
-
-
-                
-
-
-
-
-
-            
-            
-
-
-
-
         }
-
-
 
     }
 

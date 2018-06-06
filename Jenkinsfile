@@ -1,32 +1,33 @@
 pipeline    {
     
-    //agent none
+    agent none
 
-    agent {
-        dockerfile true
-        }
+    // agent {
+    //     dockerfile true
+    //     }
 
     stages {
         stage ("Build_Application"){
 
             agent { 
-                docker {
-                    image 'docker:edge'
-                    args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
+                // docker {
+                //     image 'docker:edge'
+                //     args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
 
 
-                }
+                // }
                 docker {
                     image 'maven:3.5.3'
-                    args '  -v build-volume:/app'
+                    //args '  -v build-volume:/app'
+                    args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
 
+                }
+            steps {
+                    checkout scm
+                    sh 'mvn package'
+            }
 
-                    steps {
-                        checkout scm
-                        sh 'mvn package'
-                    }
-
-                    steps {
+            steps {
                         ansiColor('xterm') {
                         checkout scm
                     //sh 'docker run -it maven:3.5.3'
@@ -38,11 +39,11 @@ pipeline    {
                     
                     // sh 'docker rmi $(docker images | grep anatolek/demo3)'
                         }
-                    }
+            }
 
 
 
-                }
+                
 
 
 

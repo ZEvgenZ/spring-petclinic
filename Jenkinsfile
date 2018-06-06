@@ -18,7 +18,7 @@ pipeline    {
                 }
                 docker {
                     image 'maven:3.5.3'
-                    //args '  -v build-volume:/app'
+                    args '  -v build-volume:/app'
 
 
                     steps {

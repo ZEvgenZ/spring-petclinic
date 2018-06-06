@@ -1,6 +1,8 @@
 pipeline    {
     
-    agent none
+    agent {
+        dockerfile true
+        }
 
     stages {
         stage ("Build_Application"){

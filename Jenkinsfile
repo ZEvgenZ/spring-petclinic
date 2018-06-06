@@ -1,5 +1,7 @@
 pipeline    {
     
+    //agent none
+
     agent {
         dockerfile true
         }
@@ -20,7 +22,8 @@ pipeline    {
 
 
                     steps {
-                checkout scm
+                        checkout scm
+                        sh 'mvn package'
                 }
 
 

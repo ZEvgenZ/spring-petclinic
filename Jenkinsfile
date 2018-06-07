@@ -15,7 +15,7 @@ pipeline    {
                 // }
                 docker {
                     image 'maven:3.5.3'
-                    args '  -v build-volume:/app'
+                    //args '  -v build-volume:/app'
                     //args '-v  /var/run/docker.sock:/var/run/docker.sock  -v build-volume:/app'
 
                 }
@@ -42,7 +42,7 @@ pipeline    {
                 withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
                 sh 'docker push zevgenz/task3_docker:${BUILD_NUMBER}'
                 }
-                // sh 'docker rmi $(docker images | grep anatolek/demo3)'
+                
             }
 
         }

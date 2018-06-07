@@ -24,7 +24,7 @@ pipeline    {
                 checkout scm
                 sh 'mvn package'
             }
-        
+        }
         stage ("Docker build && push"){
             agent any 
                 // docker {
@@ -47,7 +47,7 @@ pipeline    {
 
         }
 
-    }
+    
 
 
 }

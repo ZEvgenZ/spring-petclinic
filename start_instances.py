@@ -23,11 +23,11 @@ def create_instance(ip):
     KeyName='aws_pair_keys', 
     MaxCount=1,
     MinCount=1,
-    NetworkInterfaces=[{'SubnetId': "subnet-fa255292", 
+    NetworkInterfaces=[{'SubnetId': "subnet-6dfc4017", 
                         'DeviceIndex': 0, 
                         'AssociatePublicIpAddress': True,
                         'PrivateIpAddress': ip,
-                        'Groups': ["sg-c4d22aae",]
+                        'Groups': ["sg-bfe75ad5",]
                         }],
         )
     print(instances[0].id)  

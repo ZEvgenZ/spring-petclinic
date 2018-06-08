@@ -20,7 +20,7 @@ def create_instance(ip):
     instances = ec2.create_instances(
     ImageId='ami-2a0f324f', 
     InstanceType='t2.micro',
-    KeyName='aws_pair_keys', 
+    KeyName='aws_ssh_key', 
     MaxCount=1,
     MinCount=1,
     NetworkInterfaces=[{'SubnetId': "subnet-6dfc4017", 

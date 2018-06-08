@@ -1,5 +1,7 @@
-pipeline    {
-    
+pipeline {
+    agent {
+        label 'aws_first'
+    }
     parameters {
         string(name: 'DB_USER', defaultValue: 'usersql', description: 'User for MariaDB')
         string(name: 'DB_NAME', defaultValue: 'petclinic', description: 'Name of MariaDB')
@@ -10,42 +12,11 @@ pipeline    {
         string(name: 'APP_USER', defaultValue: 'appuser', description: 'User for AppHost')
         string(name: 'APP_PASS', defaultValue: '123456', description: 'Password for AppHost')
     }
-    
-    agent none
-
-    // agent {
-    //     dockerfile true
-    //     }
-
+    tools { 
+        maven 'maven_3.5.3' 
+    }
     stages {
-        stage ("Build_Application"){
-            agent { 
-                
-                docker {
-                    image 'maven:3.5.3'
-                    
-
-                }
-            }
-            steps {
-                checkout scm
-                sh 'mvn package'
-            }
-        }
-        stage ("Docker build && push"){
-            agent any 
-                
-           
-            steps {
-                sh 'docker build -t zevgenz/task3_docker:${BUILD_NUMBER} .'
-                sh 'docker images'
-                withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
-                sh 'docker push zevgenz/task3_docker:${BUILD_NUMBER}'
-                }
-                
-            }
-
-        }
+        
         stage ('list & instances up') {
             steps { 
                 withCredentials([[
@@ -59,7 +30,15 @@ pipeline    {
             //sleep 150 // seconds
             }
         }
-
+        
+        // stage ('Build') {
+        //     steps {
+        //         checkout scm
+        //         echo 'This is a minimal pipeline.'
+        //         sh 'mvn package'
+        //     }
+        // }
+        
         stage ('use ansible') {
 
             steps {
@@ -72,8 +51,7 @@ pipeline    {
 
             }
         }
-    
+        
 
-
-}
+    }
 }

@@ -6,12 +6,7 @@ ec2 = boto3.resource('ec2', region_name='us-east-2')
 #IP-address range
 ip_addr = ["10.0.10.100"]
 
-#hosts-file for ansible
-f_hosts=open('hosts', mode='w+')
-f_hosts.write("[hosts]\n")
-#f_hosts.write("APP_VM ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user\n")
-f_hosts.write("DB_VM ansible_ssh_host=10.0.10.100 ansible_ssh_user=ec2-user\n")
-f_hosts.close()
+
 
 
 # find image id ami-976152f2 / us-east-2
@@ -39,4 +34,10 @@ for ip in ip_addr:
 
 
 for instance in ec2.instances.all():
-    print (instance.id, instance.state)
+    #print (instance.id, instance.state)
+    #hosts-file for ansible
+    f_hosts=open('hosts', mode='w+')
+    f_hosts.write("[hosts]\n")
+    #f_hosts.write("APP_VM ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user\n")
+    f_hosts.write("DB_VM ansible_ssh_host=" + instance.public_ip_address + "ansible_ssh_user=ec2-user\n")
+    f_hosts.close()

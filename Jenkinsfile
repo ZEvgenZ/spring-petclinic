@@ -57,9 +57,10 @@ pipeline    {
            
             steps {
                 sh 'docker build -t zevgenz/task3_docker:${BUILD_NUMBER} .'
+                sh 'docker tag zevgenz/task3_docker:${BUILD_NUMBER} zevgenz/task3_docker:latest'
                 sh 'docker images'
                 withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
-                sh 'docker push zevgenz/task3_docker:${BUILD_NUMBER}'
+                sh 'docker push zevgenz/task3_docker:latest'
                 }
                 
             }

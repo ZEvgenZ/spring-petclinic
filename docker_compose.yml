@@ -1,0 +1,17 @@
+version: "2"
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=petclinic
+      - MYSQL_USER=usersql
+      - MYSQL_PASSWORD=123456
+    #ports: 3306:3306
+  app:
+    image: zevgenz/task3_docker
+   # command: ping db
+    ports:
+      - "8080:8080"
+    #volumes:
+    #  - .:/code

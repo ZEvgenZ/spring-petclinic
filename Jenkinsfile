@@ -54,7 +54,8 @@ pipeline    {
             accessKeyVariable: 'AWS_ACCESS_KEY_ID',
             secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
-            //sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 python3 ./start_instances.py' 
+            sh ('> hosts ')
+            sh 'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} AWS_DEFAULT_REGION=us-east-2 python3 ./start_docker_instance.py' 
             }
             //sleep 150 // seconds
             }
@@ -66,8 +67,7 @@ pipeline    {
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'AWS_ssh_key',
                                                              keyFileVariable: 'SSH_KEY_FOR_ABC')]) {
                   //create database
-                  sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./hosts --private-key=${SSH_KEY_FOR_ABC} --extra-vars 'db_user=${params.DB_USER} db_name=${params.DB_NAME} db_pass=${params.DB_PASS} db_host=${params.DB_HOST} db_port=${params.DB_PORT} app_pass=${params.APP_PASS} app_host=${params.APP_HOST} app_user=${params.APP_USER}' ./playbook.yml"
-                  sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./hosts --private-key=${SSH_KEY_FOR_ABC} --extra-vars 'db_user=${params.DB_USER} db_name=${params.DB_NAME} db_pass=${params.DB_PASS} db_host=${params.DB_HOST} db_port=${params.DB_PORT} app_pass=${params.APP_PASS} app_host=${params.APP_HOST} app_user=${params.APP_USER}' ./playbook_app.yml"
+                  sh "ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ./hosts --private-key=${SSH_KEY_FOR_ABC} --extra-vars 'db_user=${params.DB_USER} db_name=${params.DB_NAME} db_pass=${params.DB_PASS} db_host=${params.DB_HOST} db_port=${params.DB_PORT} app_pass=${params.APP_PASS} app_host=${params.APP_HOST} app_user=${params.APP_USER}' ./docker_app.yml"
                 }
 
             }

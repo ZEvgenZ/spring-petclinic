@@ -6,5 +6,7 @@
 FROM java:alpine
 # ....
 #COPY --from=mvn /app /
+WORKDIR /app
+COPY target/*.jar ./petclin.jar
 EXPOSE 8080
-CMD ["java","-jar","./*.jar"]
+CMD ["java","-jar","./petclin.jar"]

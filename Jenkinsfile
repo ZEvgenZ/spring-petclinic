@@ -19,9 +19,7 @@ pipeline    {
 
     stages {
          stage ('list & instances up') {
-            agent {
-            label 'aws_first'
-            }
+            agent any
 
             steps { 
                 withCredentials([[
@@ -38,9 +36,8 @@ pipeline    {
         }
 
         stage ('use ansible') {
-            agent {
-                    label 'aws_first'
-            }
+            
+            agent any
 
             steps {
                 withCredentials(bindings: [sshUserPrivateKey(credentialsId: 'AWS_ssh_key',

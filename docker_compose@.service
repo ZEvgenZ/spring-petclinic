@@ -1,0 +1,18 @@
+[Unit]
+Description=myservice with docker compose
+
+
+[Service]
+
+WorkingDirectory=/home/ec2-user
+Type=oneshot
+RemainAfterExit=yes
+
+# Compose up
+ExecStart=/usr/bin/docker-compose up -d
+
+# Compose down, remove containers and volumes
+ExecStop=/usr/bin/docker-compose down -v
+
+[Install]
+WantedBy=multi-user.target

@@ -3,7 +3,7 @@ Description=myservice with docker compose
 
 
 [Service]
-
+User=ec2-user
 WorkingDirectory=/home/ec2-user
 Type=oneshot
 RemainAfterExit=yes

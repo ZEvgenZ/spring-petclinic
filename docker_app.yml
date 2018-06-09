@@ -34,7 +34,6 @@
         state: present
         update_cache: yes
       loop:
-        - wget
         - git
         - docker 
         - python-pip
@@ -66,11 +65,12 @@
         mode: 0600 
 
     - name: restart systemd 
-      shell: systemctl daemon-reload && systemctl enable docker-compose@myservice
-      
+      shell: systemctl daemon-reload && systemctl enable docker-compose@.service
+      state: restarted
+
     - name: Start Compose
       service:
-        name: docker-compose@myservice
+        name: docker-compose@.service
         state: started    
     
    

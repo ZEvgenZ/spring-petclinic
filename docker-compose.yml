@@ -16,7 +16,6 @@ services:
       - DB_USER=usersql
       - DB_PASS=123456
       - DB_NAME=petclinic
-      - DB_PORT=3306
    # command: ping db
     ports:
       - "8080:8080"

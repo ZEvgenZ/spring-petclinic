@@ -65,11 +65,11 @@
         mode: 0600 
 
     - name: restart systemd 
-      shell: systemctl daemon-reload && systemctl enable docker-compose@.service
+      shell: systemctl daemon-reload && systemctl enable docker-compose@myservice.service
       
     - name: Start Compose
       service:
-        name: docker-compose@.service
+        name: docker-compose@myservice.service
         state: started    
     
    

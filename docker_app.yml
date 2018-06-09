@@ -44,7 +44,7 @@
       state: present
 
     - name: add user to docker 
-      shell: gpasswd -a ec2-user docker 
+      shell: usermod -a -G docker ec2-user 
       state: present
 
     - name: Restart docker
@@ -88,27 +88,27 @@
     #   debug: msg='{{ item }}'
 #####################################################
 
-    - name: Get my public IP from ipify.org
-      ipify_facts:
+    # - name: Get my public IP from ipify.org
+    #   ipify_facts:
 
-    - name: URL to the web aplication
-      debug: msg='{{ ipify_public_ip }}'
+    # - name: URL to the web aplication
+    #   debug: msg='{{ ipify_public_ip }}'
 
     
     
-    - name: Wait for the application to start
-      wait_for:
-        timeout: 310
-        host: "{{ ipify_public_ip }}"
-        port: 8080
+    # - name: Wait for the application to start
+    #   wait_for:
+    #     timeout: 310
+    #     host: "{{ ipify_public_ip }}"
+    #     port: 8080
 
-    - name: Application healthcheck
-      uri:
-        url: "http://{{ ipify_public_ip }}:8080/manage/health"
-      return_content: yes
-      register: health
+    # - name: Application healthcheck
+    #   uri:
+    #     url: "http://{{ ipify_public_ip }}:8080/manage/health"
+    #   return_content: yes
+    #   register: health
 
-    - name: Сheck if the application is running
-      debug: msg='The application is running'
-      when: health.json.status == "UP"         
+    # - name: Сheck if the application is running
+    #   debug: msg='The application is running'
+    #   when: health.json.status == "UP"         
    

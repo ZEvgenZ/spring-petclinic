@@ -66,8 +66,7 @@
 
     - name: restart systemd 
       shell: systemctl daemon-reload && systemctl enable docker-compose@.service
-      state: restarted
-
+      
     - name: Start Compose
       service:
         name: docker-compose@.service

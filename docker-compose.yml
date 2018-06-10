@@ -2,7 +2,7 @@ version: "2"
 services:
   db:
     image: mysql:5.7
-    restart: always
+    #restart: always
     container_name: db
     environment:
       - MYSQL_ROOT_PASSWORD=123456
@@ -14,7 +14,7 @@ services:
     depends_on:
       - db
     image: zevgenz/task3_docker
-    restart: always
+    #restart: always
     container_name: app
     environment:
       - DB_USER=usersql

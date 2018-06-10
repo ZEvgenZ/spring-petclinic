@@ -42,5 +42,5 @@ for instance in ec2.instances.filter(Filters=[{'Name': 'instance-state-name', 'V
     f_hosts=open('hosts', mode='w+')
     f_hosts.write("[hosts]\n")
     #f_hosts.write("APP_HOST ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user\n")
-    f_hosts.write("DB_HOST ansible_ssh_host=" + instance.private_ip_address + " ansible_ssh_user=ec2-user\n")
+    f_hosts.write("DB_HOST ansible_ssh_host=" + instance.public_ip_address + " ansible_ssh_user=ec2-user\n")
     f_hosts.close()

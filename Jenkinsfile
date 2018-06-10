@@ -33,35 +33,35 @@ pipeline    {
 
         
         
-    //     stage ("Build_Application"){
-    //         agent { 
+        stage ("Build_Application"){
+            agent { 
                 
-    //             docker {
-    //                 image 'maven:3.5.3'
+                docker {
+                    image 'maven:3.5.3'
                     
 
-    //             }
-    //         }
-    //         steps {
-    //             checkout scm
-    //             sh 'mvn package'
-    //         }
-    //     }
-    //     stage ("Docker build && push"){
-    //         agent any 
+                }
+            }
+            steps {
+                checkout scm
+                sh 'mvn package'
+            }
+        }
+        stage ("Docker build && push"){
+            agent any 
                 
            
-    //         steps {
-    //             sh 'docker build -t zevgenz/task3_docker:${BUILD_NUMBER} .'
-    //             sh 'docker tag zevgenz/task3_docker:${BUILD_NUMBER} zevgenz/task3_docker:latest'
-    //             sh 'docker images'
-    //             withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
-    //             sh 'docker push zevgenz/task3_docker:latest'
-    //             }
+            steps {
+                sh 'docker build -t zevgenz/task3_docker:${BUILD_NUMBER} .'
+                sh 'docker tag zevgenz/task3_docker:${BUILD_NUMBER} zevgenz/task3_docker:latest'
+                sh 'docker images'
+                withDockerRegistry([ credentialsId: "ID_DockerHub", url: ""]) {
+                sh 'docker push zevgenz/task3_docker:latest'
+                }
                 
-    //         }
+            }
 
-    //     }
+        }
 
         stage ('use ansible') {
             

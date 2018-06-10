@@ -1,3 +1,0 @@
-[hosts]
-APP_VM ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user
-DB_VM ansible_ssh_host=10.0.10.100 ansible_ssh_user=ec2-user

@@ -13,7 +13,7 @@ pipeline    {
     
     agent none
 
-    // stages {
+    stages {
     //      stage ('list & instances up') {
     //         agent any
 

@@ -4,8 +4,8 @@ import boto3
 ec2 = boto3.resource('ec2', region_name='us-east-2')
 
 #IP-address range
-ip_addr = ["10.0.10.200", "10.0.10.100"]
-work =["app", "db"]
+ip_addr = ["10.0.10.100"]
+work =["db"]
 
 
 

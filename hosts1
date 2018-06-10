@@ -1,0 +1,2 @@
+[hosts]
+DB_HOST ansible_ssh_host=18.188.142.219 ansible_ssh_user=ec2-user

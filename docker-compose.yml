@@ -2,10 +2,11 @@ version: "2"
 services:
   db:
     image: mysql:5.7
+    restart: always
     container_name: db
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-      - MYSQL_DATABASE=petclinic
+      - MYSQL_DATABASE=db
       - MYSQL_USER=usersql
       - MYSQL_PASSWORD=123456
     #ports: 3306:3306
@@ -13,11 +14,12 @@ services:
     depends_on:
       - db
     image: zevgenz/task3_docker
+    restart: always
     container_name: app
     environment:
       - DB_USER=usersql
       - DB_PASS=123456
-      - DB_NAME=petclinic
+      - DB_NAME=db
       - DB_HOST=db:3306
    # command: ping db
     ports:

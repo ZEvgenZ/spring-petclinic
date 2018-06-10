@@ -2,7 +2,8 @@
 # WORKDIR /app
 # RUN git clone https://github.com/ZEvgenZ/spring-petclinic/
 # COPY . . 
-# RUN mvn package -Dmaven.test.skip=true /app/spring-petclinic
+# RUN mvn install
+# #RUN mvn package -Dmaven.test.skip="true" /app/spring-petclinic/pom.xml
 
 FROM java:alpine
 # ....
@@ -15,7 +16,7 @@ COPY --chown=appuser:appuser target/*.jar ./petclin.jar
 ENV DB_HOST=db
 ENV DB_USER=usersql
 ENV DB_PASS=123456
-ENV DB_NAME=petclinic
+ENV DB_NAME=db
 ENV DB_PORT=3306
 EXPOSE 8080
 CMD ["java","-jar","./petclin.jar"]

@@ -39,7 +39,7 @@ for ip, tag in zip(ip_addr, work):
 for instance in ec2.instances.filter(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}]):
     print (instance.id, instance.state, instance.public_ip_address)
     ######hosts-file for ansible
-    f_hosts=open('hosts1', mode='w+')
+    f_hosts=open('hosts', mode='w+')
     f_hosts.write("[hosts]\n")
     #f_hosts.write("APP_HOST ansible_ssh_host=10.0.10.200 ansible_ssh_user=ec2-user\n")
     f_hosts.write("DB_HOST ansible_ssh_host=" + instance.public_ip_address + " ansible_ssh_user=ec2-user\n")

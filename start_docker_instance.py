@@ -5,7 +5,7 @@ ec2 = boto3.resource('ec2', region_name='us-east-2')
 
 #IP-address range
 ip_addr = ["10.0.10.100"]
-
+work =['app', 'db']
 
 
 
@@ -25,6 +25,7 @@ def create_instance(ip):
                         'Groups': ["sg-bfe75ad5",]
                         }],
         )
+    instance.create_tags(Tags=[{"Key": "Name", "Value": work[i] }])
     print(instances[0].id)  
     return instances[0].wait_until_running()
 

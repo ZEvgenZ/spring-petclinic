@@ -1,15 +1,15 @@
 pipeline    {
     
-    parameters {
-        string(name: 'DB_USER', defaultValue: 'usersql', description: 'User for MariaDB')
-        string(name: 'DB_NAME', defaultValue: 'petclinic', description: 'Name of MariaDB')
-        string(name: 'DB_PASS', defaultValue: '123456', description: 'Password for MariaDB')
-        string(name: 'DB_HOST', defaultValue: '10.0.10.100', description: 'IP_address of MariaDB')
-        string(name: 'DB_PORT', defaultValue: '3306', description: 'Port of MariaDB')
-        string(name: 'APP_HOST', defaultValue: '10.0.10.200', description: 'IP_address of AppHost')
-        string(name: 'APP_USER', defaultValue: 'appuser', description: 'User for AppHost')
-        string(name: 'APP_PASS', defaultValue: '123456', description: 'Password for AppHost')
-    }
+    // parameters {
+    //     string(name: 'DB_USER', defaultValue: 'usersql', description: 'User for MariaDB')
+    //     string(name: 'DB_NAME', defaultValue: 'petclinic', description: 'Name of MariaDB')
+    //     string(name: 'DB_PASS', defaultValue: '123456', description: 'Password for MariaDB')
+    //     string(name: 'DB_HOST', defaultValue: '10.0.10.100', description: 'IP_address of MariaDB')
+    //     string(name: 'DB_PORT', defaultValue: '3306', description: 'Port of MariaDB')
+    //     string(name: 'APP_HOST', defaultValue: '10.0.10.200', description: 'IP_address of AppHost')
+    //     string(name: 'APP_USER', defaultValue: 'appuser', description: 'User for AppHost')
+    //     string(name: 'APP_PASS', defaultValue: '123456', description: 'Password for AppHost')
+    // }
     
     agent none
 

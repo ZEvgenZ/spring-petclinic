@@ -11,7 +11,7 @@ work =['app', 'db']
 
 # find image id ami-976152f2 / us-east-2
 # Create instances
-def create_instance(ip):
+def create_instance(ip, tag):
     instances = ec2.create_instances(
     ImageId='ami-2a0f324f', 
     InstanceType='t2.micro',
@@ -25,13 +25,13 @@ def create_instance(ip):
                         'Groups': ["sg-bfe75ad5",]
                         }],
         )
-    instance.create_tags(Tags=[{"Key": "Name", "Value": work[i] }])
+    instance.create_tags(Tags=[{"Key": "Name", "Value": work[tag] }])
     print(instances[0].id)  
     return instances[0].wait_until_running()
 
 
-for ip in ip_addr:
-    create_instance(ip)
+for ip, tag in zip(ip_addr, work):
+    create_instance(ip, tag)
 
 
 for instance in ec2.instances.filter(Filters=[{'Name': 'instance-state-name', 'Values': ['running']}]):

@@ -6,7 +6,8 @@
     db_pass: '{{ DB_PASS }}'
     db_host: '{{ DB_HOST }}'
     db_port: '{{ DB_PORT }}'
-    db_name: '{{ DB_NAME }}' 
+    db_name: '{{ DB_NAME }}'
+    app_host: '{{ APP_HOST }}' 
   
   tasks:
     # - name: Update yum
@@ -28,7 +29,7 @@
   ############################## create database  ###################
     - name: Start the MySQL service
       service:
-        name: mariadb
+        name: mysql
         state: started
         enabled: true
 
@@ -72,7 +73,7 @@
 
     - name: Restart MySQL
       service:
-        name: mariadb
+        name: mysql
         state: restarted
   ############################################################# end create DB #########################      
         

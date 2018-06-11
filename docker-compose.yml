@@ -16,6 +16,8 @@ services:
     image: zevgenz/task3_docker
     #restart: always
     container_name: app
+    links:
+      - db:db
     environment:
       - DB_USER=usersql
       - DB_PASS=123456

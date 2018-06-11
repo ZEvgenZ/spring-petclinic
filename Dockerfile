@@ -13,7 +13,7 @@ RUN  addgroup -g 1000 -S appuser && \
    adduser -u 1000 -S appuser -G appuser
 USER appuser
 COPY --chown=appuser:appuser target/*.jar ./petclin.jar
-ENV DB_HOST=10.0.10.100
+ENV DB_HOST=db
 ENV DB_USER=usersql
 ENV DB_PASS=123456
 ENV DB_NAME=petclinic
